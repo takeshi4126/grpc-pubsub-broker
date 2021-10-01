@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 	"errors"
-	pb "github.com/weackd/grpc-pubsub-broker/protobuf"
+	pb "../protobuf"
 	"sync"
 	"math/rand"
 	"golang.org/x/net/context"

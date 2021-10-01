@@ -5,9 +5,9 @@ import (
 	"testing"
 	"io"
 	"time"
-	"fmt"
+//	"fmt"
 	"sync"
-	pb "github.com/weackd/grpc-pubsub-broker/protobuf"
+	pb "../protobuf"
 	"google.golang.org/grpc"
 )
 
@@ -156,7 +156,7 @@ func (this *TestContext) StressTest(b *testing.B, msgLimit int, subNb int, pubNb
 
 	for i := 0; i < subNb; i++ {
 		if err := this.AddSub(topics); err != nil {
-			b.Fatalf("Couldn't add subscriber")
+			b.Fatalf("Couldn't add subscriber %d", i)
 		}
 	}
 
@@ -194,8 +194,17 @@ func (this *TestContext) StressTest(b *testing.B, msgLimit int, subNb int, pubNb
 	b.StopTimer()
 	
 	b.Logf("Received %d messages with %d subscribers", received, subNb)
+
+	for _, sub := range this.subscribers {
+		sub.conn.Close()
+	}
+
+	for _, pub := range this.publishers {
+		pub.conn.Close()
+	}
 }
 
+/*
 func BenchmarkServer1p1s(b *testing.B) {
 	sent = 0
 	received = 0
@@ -285,5 +294,27 @@ func BenchmarkServer5000_10p5s_3MB_MESSAGE(b *testing.B) {
 
 	test.StressTest(b, 5000, 5, 10, topics, messages)
 	fmt.Printf("DONE !\n")
+	test.Stop()
+}
+*/
+
+func BenchmarkServer1_1p_1kb_MESSAGE(b *testing.B) {
+	sent = 0
+	received = 0
+	var test TestContext
+
+	if err := test.StartServer("35000"); err != nil {
+		b.Fatalf("Couldn't start server: %s", err.Error())
+	}
+
+	topics := []string {
+		"test",
+		"test2"}
+	
+	messages := []string {
+		generateRandomString(1024)}
+
+	test.StressTest(b, 1, 10000, 1, topics, messages)
+//	fmt.Printf("DONE !\n")
 	test.Stop()
 }

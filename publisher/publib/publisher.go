@@ -2,7 +2,7 @@ package publisher
 
 import (
 	"context"
-	pb "github.com/weackd/grpc-pubsub-broker/protobuf"
+	pb "imc/grpc_psb/protobuf"
 	"google.golang.org/grpc/grpclog"
 )
 

@@ -307,6 +307,7 @@ func BenchmarkServer1_1p_1kb_MESSAGE(b *testing.B) {
 		b.Fatalf("Couldn't start server: %s", err.Error())
 	}
 
+	time.Sleep(1 * time.Second)
 	topics := []string {
 		"test",
 		"test2"}

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 	"errors"
-	pb "../protobuf"
+	pb "imc/grpc_psb/protobuf"
 	"sync"
 	"math/rand"
 	"golang.org/x/net/context"

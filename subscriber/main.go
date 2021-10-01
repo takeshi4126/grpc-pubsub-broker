@@ -4,8 +4,8 @@ import (
 	"time"
 	"flag"
 	"fmt"
-	pb "github.com/weackd/grpc-pubsub-broker/protobuf"
-	sublib "github.com/weackd/grpc-pubsub-broker/subscriber/sublib"
+	pb "imc/grpc_psb/protobuf"
+	sublib "imc/grpc_psb/subscriber/sublib"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
 )

@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"time"
 
-	pb "github.com/weackd/grpc-pubsub-broker/protobuf"
-	publib "github.com/weackd/grpc-pubsub-broker/publisher/publib"
+	pb "imc/grpc_psb/protobuf"
+	publib "imc/grpc_psb/publisher/publib"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/grpclog"
 )
